@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask
+instance/
+*.db
+*.sqlite3
+*.log
+
+# Vite / React / Node
+node_modules/
+dist/
+build/
+*.local
+.env*
+
+# System
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# OS junk
+*.swp
+*.swo
+*~
+
+# Compiled C files
+*.so
+
+# macOS metadata
+.AppleDouble
+.LSOverride
