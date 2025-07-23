@@ -8,33 +8,33 @@ const App = () => {
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+ const handleSubmit = async (e) => {
+  e.preventDefault()
 
-    const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/)
-    if (!match) {
-      alert('Invalid YouTube URL')
-      return
-    }
-
-    const videoId = match[1]
-    setLoading(true)
-
-    try {
-      const res = await fetch('http://localhost:5000/api/search', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ videoId, keyword, language }),
-      })
-      const data = await res.json()
-      setResults(data.matches || [])
-    } catch (err) {
-      console.error(err)
-      alert('Error searching transcript')
-    } finally {
-      setLoading(false)
-    }
+  const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/)
+  if (!match) {
+    alert('Invalid YouTube URL')
+    return
   }
+
+  const videoId = match[1]
+  setLoading(true)
+
+  try {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/search`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ videoId, keyword, language }),
+    })
+    const data = await res.json()
+    setResults(data.matches || [])
+  } catch (err) {
+    console.error(err)
+    alert('Error searching transcript')
+  } finally {
+    setLoading(false)
+  }
+}
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center p-6">
